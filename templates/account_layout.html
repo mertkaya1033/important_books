@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block head %} {% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <div class="inputs centered">
+            <h1 id="{{page_name}}-title"> {% block title%}{% endblock %}</h1>
+            <section>
+                {% block entry %}
+                {% endblock%}
+            </section>
+            <section>
+                <form class="centered" action="{{url_for(page_name)}}" method="post">
+                    {% block inputs %}
+                    {% endblock %}
+                </form>
+                {% block other %}{% endblock %}
+            </section>
+        </div>
+    </body>
+</html>

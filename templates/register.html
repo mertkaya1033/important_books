@@ -1,0 +1,69 @@
+{% extends "account_layout.html" %}
+
+{% block head %}
+    Important Books
+{% endblock %}
+
+{% block title%}
+    Create an account
+{% endblock %}
+
+{% block entry %}
+
+    <ul>
+
+        {% if 'emptyEntry' in entries %}
+            <li class="form-group text-danger" style="text-align=left;">
+                Please complete every field.
+            </li>
+        {% endif %}
+
+        {% if 'usrNotAvailable' in entries %}
+            <li class="form-group text-danger" style="text-align=left;">
+                The entered username is currently unavailable. Please try a different username.
+            </li>
+        {% endif %}
+
+        {% if 'pswNotMatched' in entries %}
+            <li class="form-group text-danger" style="text-align=left;">
+                The passwords must match.
+            </li>
+        {% endif %}
+
+        {% if 'pswLength' in entries %}
+            <li class="form-group text-danger" style="text-align=left;">
+                The password must have between 8 to 24 characters inclusive.
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+
+{% block inputs %}
+    <div class="form-group group">
+        <label for="username"> Username: </label>
+        <input type="text" name="username">
+    </div>
+
+    <div class="form-group group">
+        <label for="password"> Password: </label>
+        <input type="password" name="password">
+    </div>
+
+    <div class="form-group group">
+        <label for="cpassword"> Confirm Password: </label>
+        <input type="password" name="cpassword">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" name="sign-up"> Sign Up</button>
+    </div>
+{% endblock %}
+
+{% block other %}
+    <form action="{{ url_for('index') }}" method="get">
+        <div class="form-group">
+            <button class="btn btn-primary" name="sign-in">Sign In</button>
+        </div>
+    </form>
+{% endblock %}

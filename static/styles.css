@@ -1,0 +1,76 @@
+label{
+    padding-right: 20px;
+}
+
+.inputs{
+    display: flex;
+    max-width: 1000px;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.centered{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#book_title{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: blue;
+}
+
+#search-container{
+    max-width: 1000px;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#index-title{
+    color: red;
+    padding-bottom: 100px;
+}
+#register-title{
+    color: red;
+    padding-bottom: 100px;
+}
+
+#menu-title{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: red;
+}
+
+#search-results{
+
+}
+
+.data-grid{
+    max-width: 1000px;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logout{
+    padding-top: 10px;
+}
+
+.result{
+    width: 100%;
+}

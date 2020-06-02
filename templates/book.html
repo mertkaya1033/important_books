@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ book_data.title }}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <div class="data-grid d-flex justify-content-between">
+            <form class="container text-left" action="{{ url_for('index') }}" method="get">
+                <div class="logout">
+                    <button class="btn btn-primary">Back</button>
+                </div>
+            </form>
+            <form class="container text-right" action="{{ url_for('logout') }}" method="post">
+                <div class="logout">
+                    <button class="btn btn-primary">Log Out</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="centered">
+            <h1 id="book-title"> {{ book_data.title }} </h1>
+        </div>
+
+        <div id="book-data" class="data-grid">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="text-left font-weight-bold">Author:</span>
+                    <span class="text-right">{{ book_data.author }}</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="text-left font-weight-bold">Publication Year:</span>
+                    <span class="text-right">{{ book_data.year }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="text-left font-weight-bold">ISBN:</span>
+                    <span class="text-right">{{ book_data.isbn }}</span>
+                </li>
+
+                {% if goodreads_rating != None %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-left font-weight-bold">Goodreads Average Rating:</span>
+                        <span class="text-right">{{ goodreads_rating.average }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-left font-weight-bold">Goodreads Number of Ratings:</span>
+                        <span class="text-right">{{ goodreads_rating.count }}</span>
+                    </li>
+                {% endif%}
+                {% if imp_books_rating != None %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-left font-weight-bold">Important Books Average Rating:</span>
+                        <span class="text-right">{{ imp_books_rating.average }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-left font-weight-bold">Important Books Number of Ratings:</span>
+                        <span class="text-right">{{ imp_books_rating.count }}</span>
+                    </li>
+                {% endif%}
+
+            </ul>
+        </div>
+        {% if disabled_review %}
+            <div class="data-grid text-right">
+                <button class="text-right btn btn-primary" disabled>Review</button>
+            </div>
+        {% else %}
+            <form class="data-grid text-right" action="{{url_for('review', isbn=book_data.isbn)}}">
+                <button class="text-right btn btn-primary">Review</button>
+            </form>
+        {% endif %}
+
+        {% if reviews != None %}
+            <div id="reviews" class="data-grid">
+                <ul class="list-group">
+                    {% for review in reviews %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-1 text-left">{{ review.username }}</h5>
+                                <h5 class="mb-1 text-right">{{ review.rating }}</h5>
+                            </div>
+                            <small>{{ review.review }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+    </body>
+</html>

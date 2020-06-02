@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Important Books</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <form class="container" action="{{ url_for('logout') }}" method="post">
+            <div class="text-right logout">
+                <button class="btn btn-secondary">Log Out</button>
+            </div>
+        </form>
+
+        <div class="centered">
+            <h1 id="menu-title"> Menu </h1>
+        </div>
+
+
+        <div id="search-container">
+            <form action="{{ url_for('search') }}" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="search-results" class="data-grid">
+            {% if title != [] or author != [] or isbn != [] %}
+                <div class="list-group">
+                    {% if title != [] %}
+                        Related to title:
+                        {% for book in title %}
+                            <a href="{{ url_for('book', isbn=book.isbn) }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ book.title }}</h5>
+                                    <small>{{ book.year }}</small>
+                                </div>
+                                <small>{{ book.author }}</small>
+                                <small>{{ book.isbn }}</small>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if author != [] %}
+                        Related to author:
+                        {% for book in author %}
+                            <a href="{{ url_for('book', isbn=book.isbn) }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ book.title }}</h5>
+                                    <small>{{ book.year }}</small>
+                                </div>
+                                <small>{{ book.author }}</small>
+                                <small>{{ book.isbn }}</small>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if isbn != [] %}
+                        Related to isbn:
+                        {% for book in isbn %}
+                            <a href="{{ url_for('book', isbn=book.isbn) }}" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ book.title }}</h5>
+                                    <small>{{ book.year }}</small>
+                                </div>
+                                <small>{{ book.author }}</small>
+                                <small>{{ book.isbn }}</small>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="text-danger">
+                    Your search was not matched with any books.
+                </div>
+            {% endif %}
+
+        </div>
+    </body>
+</html>

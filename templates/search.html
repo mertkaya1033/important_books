@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Important Books</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <form class="container" action="{{ url_for('logout') }}" method="post">
+            <div class="text-right logout">
+                <button class="btn btn-primary">Log Out</button>
+            </div>
+        </form>
+
+        <div class="centered">
+            <h1 id="menu-title"> Menu </h1>
+        </div>
+
+
+        <div id="search-container" class="data-grid">
+            <form action="{{ url_for('search') }}" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "account_layout.html" %}
+
+{% block head %}
+    Important Books
+{% endblock %}
+
+{% block title%}
+    Welcome to Important Books!
+{% endblock %}
+
+{% block entry %}
+    <ul>
+        {% if "incorrectEntry" in entries %}
+            <div class="form-group text-danger">
+                Username or password was incorrect. Please try again.
+            </div>
+        {% endif %}
+        {% if "registerSuccess" in entries %}
+            <div class="form-group text-success">
+                Your account has been created successfully.
+            </div>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block inputs %}
+
+    <div class="form-group group">
+        <label for="username"> Username: </label>
+        <input type="text" name="username">
+    </div>
+
+    <div class="form-group group">
+        <label for="password"> Password: </label>
+        <input type="password" name="password">
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" name="sign-in"> Sign In</button>
+    </div>
+{% endblock %}
+
+{% block other %}
+    <form action="{{ url_for('register') }}" method="get">
+        <div class="form-group">
+            <button class="btn btn-primary" name="register">Register</button>
+        </div>
+    </form>
+{% endblock %}
